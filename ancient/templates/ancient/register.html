@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>  Login       </title>
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<h1> Welcome to <span class = "codezvous">Codezvous</span>, the World's leading course management platform</h1>
+<h2>Register</h2>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form_user.as_p }}
+        {{ form_identity.as_p }}
+        <button type="submit" class="save btn btn-default">Register now</button>
+    </form>
+
+<h2><a href="{%url 'login'%}"  style = "text-decoration:none"> Login </a></h2>
+</body>
+</html>

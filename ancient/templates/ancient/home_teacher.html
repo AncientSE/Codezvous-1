@@ -1,0 +1,11 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<head>
+	<title>Codezvous Teacher</title>
+        <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<h1> Welcome, Teacher {{ user }}!<br> This is your <span class="codezvous">Codezvous</span> homepage  </h1>
+    <h2><a href="{%url 'logout'%}" style = "text-decoration:none"> logout</a></h2>
+</body>
