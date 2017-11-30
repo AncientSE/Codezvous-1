@@ -2,7 +2,7 @@
 
 Blogs: www.cnblogs.com/ustc-rjgc
 
-Github: github.com/AncientSE/Codezvous
+Github: https://github.com/AncientSE/Codezvous
 
 初步实现教师和学生的注册和登录框架
 当前Model里面的表
@@ -23,17 +23,17 @@ Github: github.com/AncientSE/Codezvous
 	
 操作方法：
 
-  ·将该文件拷贝到本地：
+   ·将该文件拷贝到本地：
 
       ·git clone https://github.com/AncientSE/Codezvous.git 
   
-  ·如果已经安装了python3以及Django库，那么进入Codezvous文件夹
+   ·如果已经安装了python3以及Django库，那么进入Codezvous文件夹
   
       ·python manage.py migrate
       
       ·python manage.py runserver
       
-  ·在浏览器打开127.0.0.1：8000就可以看到首页
+   ·在浏览器打开127.0.0.1：8000就可以看到首页
       
       
 实现之后的效果应该是rickyim.pythonanywhere.com这样
