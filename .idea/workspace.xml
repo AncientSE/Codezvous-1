@@ -2,23 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96413d56-3c20-48ed-b8a8-0e4053104e82" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/django.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Django_Lib.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ancient/migrations/0004_auto_20180104_1009.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ancient/migrations/0005_auto_20180104_1325.py" />
-      <change beforePath="$PROJECT_DIR$/ancient/admin.py" afterPath="$PROJECT_DIR$/ancient/admin.py" />
-      <change beforePath="$PROJECT_DIR$/ancient/models.py" afterPath="$PROJECT_DIR$/ancient/models.py" />
-      <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/course_student.html" afterPath="$PROJECT_DIR$/ancient/templates/ancient/course_student.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/course_student.html" afterPath="" />
       <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/home_student.html" afterPath="$PROJECT_DIR$/ancient/templates/ancient/home_student.html" />
       <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/home_teacher.html" afterPath="$PROJECT_DIR$/ancient/templates/ancient/home_teacher.html" />
       <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/student_course_hw.html" afterPath="$PROJECT_DIR$/ancient/templates/ancient/student_course_hw.html" />
       <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/student_course_main.html" afterPath="$PROJECT_DIR$/ancient/templates/ancient/student_course_main.html" />
       <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/student_home_cs.html" afterPath="$PROJECT_DIR$/ancient/templates/ancient/student_home_cs.html" />
-      <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/submit_1.html" afterPath="$PROJECT_DIR$/ancient/templates/ancient/submit_1.html" />
+      <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/submit_1.html" afterPath="" />
       <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/teacher_course_hw.html" afterPath="$PROJECT_DIR$/ancient/templates/ancient/teacher_course_hw.html" />
       <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/teacher_course_main.html" afterPath="$PROJECT_DIR$/ancient/templates/ancient/teacher_course_main.html" />
       <change beforePath="$PROJECT_DIR$/ancient/templates/ancient/teacher_home_ct.html" afterPath="$PROJECT_DIR$/ancient/templates/ancient/teacher_home_ct.html" />
@@ -34,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ancient/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2193">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -46,26 +37,94 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ancient/forms.py">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ancient/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+            <state relative-caret-position="190">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
-                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#85#117#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ancient/models.py">
+      <file leaf-file-name="student_course_hw.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/student_course_hw.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-228">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teacher_course_hw.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/teacher_course_hw.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="41" column="92" lean-forward="false" selection-start-line="41" selection-start-column="92" selection-end-line="41" selection-end-column="92" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teacher_course_main.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/teacher_course_main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="35" column="54" lean-forward="false" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="student_course_main.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/student_course_main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="28" column="64" lean-forward="false" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="student_home_cs.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/student_home_cs.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-684">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teacher_home_ct.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/teacher_home_ct.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="39" column="63" lean-forward="false" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home_teacher.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/home_teacher.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-342">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home_student.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/home_student.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="45" column="92" lean-forward="false" selection-start-line="45" selection-start-column="92" selection-end-line="45" selection-end-column="92" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,18 +159,18 @@
         <option value="$PROJECT_DIR$/ancient/templates/ancient/student_course_base.html" />
         <option value="$PROJECT_DIR$/ancient/templates/ancient/course_student.html" />
         <option value="$PROJECT_DIR$/ancient/models.py" />
-        <option value="$PROJECT_DIR$/ancient/templates/ancient/student_course_hw.html" />
-        <option value="$PROJECT_DIR$/ancient/urls.py" />
-        <option value="$PROJECT_DIR$/ancient/templates/ancient/teacher_course_main.html" />
-        <option value="$PROJECT_DIR$/ancient/views.py" />
-        <option value="$PROJECT_DIR$/ancient/templates/ancient/teacher_course_hw.html" />
-        <option value="$PROJECT_DIR$/ancient/templates/ancient/home_teacher.html" />
-        <option value="$PROJECT_DIR$/ancient/templates/ancient/teacher_home_ct.html" />
-        <option value="$PROJECT_DIR$/ancient/templates/ancient/student_course_main.html" />
-        <option value="$PROJECT_DIR$/ancient/templates/ancient/student_home_cs.html" />
-        <option value="$PROJECT_DIR$/ancient/templates/ancient/home_student.html" />
         <option value="D:/qqfile/314541280/FileRecv/Codezvous_edited_by_yan_2017_12_20/ancient/models.py" />
         <option value="D:/qqfile/314541280/FileRecv/Codezvous_edited_by_yan_2017_12_20/ancient/views.py" />
+        <option value="$PROJECT_DIR$/ancient/views.py" />
+        <option value="$PROJECT_DIR$/ancient/urls.py" />
+        <option value="$PROJECT_DIR$/ancient/templates/ancient/student_home_cs.html" />
+        <option value="$PROJECT_DIR$/ancient/templates/ancient/teacher_course_hw.html" />
+        <option value="$PROJECT_DIR$/ancient/templates/ancient/student_course_hw.html" />
+        <option value="$PROJECT_DIR$/ancient/templates/ancient/home_student.html" />
+        <option value="$PROJECT_DIR$/ancient/templates/ancient/home_teacher.html" />
+        <option value="$PROJECT_DIR$/ancient/templates/ancient/student_course_main.html" />
+        <option value="$PROJECT_DIR$/ancient/templates/ancient/teacher_home_ct.html" />
+        <option value="$PROJECT_DIR$/ancient/templates/ancient/teacher_course_main.html" />
       </list>
     </option>
   </component>
@@ -154,6 +213,19 @@
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="django" type="cbb8eebc:String" user="django" />
+              <item name="ancient" type="cbb8eebc:String" user="ancient" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="django" type="cbb8eebc:String" user="django" />
+              <item name="ancient" type="cbb8eebc:String" user="ancient" />
+              <item name="templates" type="cbb8eebc:String" user="templates" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="django" type="cbb8eebc:String" user="django" />
+              <item name="ancient" type="cbb8eebc:String" user="ancient" />
+              <item name="templates" type="cbb8eebc:String" user="templates" />
               <item name="ancient" type="cbb8eebc:String" user="ancient" />
             </path>
             <path>
@@ -239,7 +311,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18667643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22547585" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -355,22 +427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/submit_1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="48" column="56" lean-forward="true" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/course_student.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/student_home_main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -402,80 +458,6 @@
           <folding>
             <element signature="e#1#33#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/student_course_hw.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ancient/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#85#117#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/teacher_course_main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="37" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/teacher_course_hw.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/home_teacher.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="41" column="71" lean-forward="true" selection-start-line="41" selection-start-column="71" selection-end-line="41" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/teacher_home_ct.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="40" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/student_course_main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/student_home_cs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/home_student.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="43" column="16" lean-forward="true" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -553,13 +535,103 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/submit_1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ancient/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2193">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="187">
+          <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/course_student.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1026">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ancient/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#85#117#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/teacher_course_hw.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="41" column="92" lean-forward="false" selection-start-line="41" selection-start-column="92" selection-end-line="41" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/student_home_cs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-684">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/home_student.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="45" column="92" lean-forward="false" selection-start-line="45" selection-start-column="92" selection-end-line="45" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/student_course_hw.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-228">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/student_course_main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="28" column="64" lean-forward="false" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/home_teacher.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-342">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/teacher_home_ct.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="39" column="63" lean-forward="false" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ancient/templates/ancient/teacher_course_main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="35" column="54" lean-forward="false" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -14,7 +14,6 @@ urlpatterns = [
     url(r'^$', views.homepage, name='homepage'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^login$', auth_views.login, {'template_name': 'ancient/login.html'}, name='login'),
-    url(r'^submit/1/$', views.submit_new, name='submit_1'),
 
     #student
     url(r'^student/home/cs/(?P<classnumber>\d+)/$', views.student_home_cs, name='student_home_cs'), # student homepage for class content

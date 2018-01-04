@@ -8,22 +8,6 @@ from django.contrib.auth.views import logout
 
 
 # Create your views here.
-'''
-def homepage(request):  # homepage
-    if request.user.is_authenticated():
-        identity = Identity.objects.filter(name=request.user)
-        if(len(identity) is not 0):
-            if identity[0].identity==identity[0].STUDENT: #
-                submits = Submit.objects.filter(submit_time__lte=timezone.now(), student=request.user).order_by('submit_time')
-                return render(request, 'ancient/home_student.html', {'submits': submits, 'user': request.user})
-            else:
-                return render(request, 'ancient/home_teacher.html', { 'user': request.user})
-        else:
-            return redirect('/admin')
-    else:
-        return redirect('/login')
-'''
-
 
 def homepage(request):  # homepage
     if request.user.is_authenticated():
@@ -57,7 +41,7 @@ def student_home_cs(request, classnumber):  #render the class number
         return redirect('/login')
 
 
-def student_course_main(request, classnumber):  #render the class number
+def student_course_main(request, classnumber):  #class page
     if request.user.is_authenticated():
         identity = Identity.objects.filter(name=request.user)
         if(len(identity) is not 0):
@@ -73,7 +57,7 @@ def student_course_main(request, classnumber):  #render the class number
         return redirect('/login')
 
 
-def student_course_hw(request, classnumber, homeworknumber):  #render the class number
+def student_course_hw(request, classnumber, homeworknumber):  #
     if request.user.is_authenticated():
         identity = Identity.objects.filter(name=request.user)
         if(len(identity) is not 0):
@@ -90,7 +74,7 @@ def student_course_hw(request, classnumber, homeworknumber):  #render the class 
         return redirect('/login')
 
 
-def teacher_home_ct(request, classnumber):  #render the class number
+def teacher_home_ct(request, classnumber):  #
     if request.user.is_authenticated():
         identity = Identity.objects.filter(name=request.user)
         if(len(identity) is not 0):
@@ -106,7 +90,7 @@ def teacher_home_ct(request, classnumber):  #render the class number
         return redirect('/login')
 
 
-def teacher_course_main(request, classnumber):  #render the class number
+def teacher_course_main(request, classnumber):  #
     if request.user.is_authenticated():
         identity = Identity.objects.filter(name=request.user)
         if(len(identity) is not 0):
@@ -122,7 +106,7 @@ def teacher_course_main(request, classnumber):  #render the class number
         return redirect('/login')
 
 
-def teacher_course_hw(request, classnumber, homeworknumber):  #render the class number
+def teacher_course_hw(request, classnumber, homeworknumber):  #
     if request.user.is_authenticated():
         identity = Identity.objects.filter(name=request.user)
         if(len(identity) is not 0):
@@ -175,7 +159,7 @@ class UserFormView(View):  # register
 
         return render(request, self.template_name, {'form_user': form_user, 'form_identity': form_identity})
 
-
+'''
 def submit_new(request):  # submit
     if request.method == "POST":
         form = SubmitForm(request.POST)
@@ -188,3 +172,4 @@ def submit_new(request):  # submit
     else:
         form = SubmitForm()
     return render(request, 'ancient/submit_1.html', {'form': form})
+'''
