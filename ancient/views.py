@@ -2,21 +2,137 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.utils import timezone
-from .models import Submit, Identity
+from .models import Submit, Identity, ClassChoose, ClassTable, Homework
 from .forms import UserForm, SubmitForm, IdentityForm
 from django.contrib.auth.views import logout
 
 
 # Create your views here.
+'''
 def homepage(request):  # homepage
     if request.user.is_authenticated():
         identity = Identity.objects.filter(name=request.user)
         if(len(identity) is not 0):
-            if(identity[0].identity==identity[0].STUDENT):
+            if identity[0].identity==identity[0].STUDENT: #
                 submits = Submit.objects.filter(submit_time__lte=timezone.now(), student=request.user).order_by('submit_time')
                 return render(request, 'ancient/home_student.html', {'submits': submits, 'user': request.user})
             else:
                 return render(request, 'ancient/home_teacher.html', { 'user': request.user})
+        else:
+            return redirect('/admin')
+    else:
+        return redirect('/login')
+'''
+
+
+def homepage(request):  # homepage
+    if request.user.is_authenticated():
+        identity = Identity.objects.filter(name=request.user)
+        if(len(identity) is not 0):
+            if identity[0].identity == identity[0].STUDENT: #
+                classchoose = ClassChoose.objects.filter(student=request.user)
+                return render(request, 'ancient/home_student.html', {'classchoose': classchoose, 'user': request.user, 'numofchoose':len(classchoose)})  # the class the user has chosen
+            else:
+                classteaching = ClassTable.objects.filter(teacher=request.user)
+                return render(request, 'ancient/home_teacher.html', { 'user': request.user, 'classteaching':classteaching,'numofchoose':len(classteaching)})
+        else:
+            return redirect('/admin')
+    else:
+        return redirect('/login')
+
+
+def student_home_cs(request, classnumber):  #render the class number
+    if request.user.is_authenticated():
+        identity = Identity.objects.filter(name=request.user)
+        if(len(identity) is not 0):
+            if identity[0].identity == identity[0].STUDENT: #
+                classchoose = ClassChoose.objects.filter(student=request.user)
+                classrender = ClassTable.objects.filter(class_number=classnumber)
+                return render(request, 'ancient/student_home_cs.html', {'classchoose': classchoose, 'user': request.user, 'classrender': classrender})  # the class the user has chosen
+            else:
+                return redirect('/login')
+        else:
+            return redirect('/admin')
+    else:
+        return redirect('/login')
+
+
+def student_course_main(request, classnumber):  #render the class number
+    if request.user.is_authenticated():
+        identity = Identity.objects.filter(name=request.user)
+        if(len(identity) is not 0):
+            if identity[0].identity == identity[0].STUDENT: #
+                classrender = ClassTable.objects.filter(class_number=classnumber)
+                homeworkrender = Homework.objects.filter(class_number = classrender[0]).order_by('homework_number')
+                return render(request, 'ancient/student_course_main.html', {'homeworkrender': homeworkrender, 'user': request.user, 'classrender': classrender[0]})  # the class the user has chosen
+            else:
+                return redirect('/login')
+        else:
+            return redirect('/admin')
+    else:
+        return redirect('/login')
+
+
+def student_course_hw(request, classnumber, homeworknumber):  #render the class number
+    if request.user.is_authenticated():
+        identity = Identity.objects.filter(name=request.user)
+        if(len(identity) is not 0):
+            if identity[0].identity == identity[0].STUDENT: #
+                classrender = ClassTable.objects.filter(class_number=classnumber)
+                homeworkrender = Homework.objects.filter(class_number=classrender[0]).order_by('homework_number')
+                homeworkcontent = Homework.objects.filter(homework_number=homeworknumber, class_number=classrender[0])
+                return render(request, 'ancient/student_course_hw.html', {'homeworkrender': homeworkrender, 'user': request.user, 'classrender': classrender[0], 'content':homeworkcontent})  # the class the user has chosen
+            else:
+                return redirect('/login')
+        else:
+            return redirect('/admin')
+    else:
+        return redirect('/login')
+
+
+def teacher_home_ct(request, classnumber):  #render the class number
+    if request.user.is_authenticated():
+        identity = Identity.objects.filter(name=request.user)
+        if(len(identity) is not 0):
+            if identity[0].identity == identity[0].TEACHER: #
+                classteaching = ClassTable.objects.filter(teacher=request.user)
+                classrender = ClassTable.objects.filter(class_number=classnumber).order_by('class_number')
+                return render(request, 'ancient/teacher_home_ct.html', { 'user': request.user, 'classrender': classrender, 'classteaching': classteaching})  # the class the user has chosen
+            else:
+                return redirect('/login')
+        else:
+            return redirect('/admin')
+    else:
+        return redirect('/login')
+
+
+def teacher_course_main(request, classnumber):  #render the class number
+    if request.user.is_authenticated():
+        identity = Identity.objects.filter(name=request.user)
+        if(len(identity) is not 0):
+            if identity[0].identity == identity[0].TEACHER: #
+                classrender = ClassTable.objects.filter(class_number=classnumber)
+                homeworkrender = Homework.objects.filter(class_number=classrender[0]).order_by('homework_number')
+                return render(request, 'ancient/teacher_course_main.html', {'homeworkrender': homeworkrender, 'user': request.user, 'classrender': classrender[0]})  # the class the user has chosen
+            else:
+                return redirect('/login')
+        else:
+            return redirect('/admin')
+    else:
+        return redirect('/login')
+
+
+def teacher_course_hw(request, classnumber, homeworknumber):  #render the class number
+    if request.user.is_authenticated():
+        identity = Identity.objects.filter(name=request.user)
+        if(len(identity) is not 0):
+            if identity[0].identity == identity[0].TEACHER: #
+                classrender = ClassTable.objects.filter(class_number=classnumber)
+                homeworkrender = Homework.objects.filter(class_number=classrender[0]).order_by('homework_number')
+                homeworkcontent = Homework.objects.filter(homework_number=homeworknumber, class_number=classrender[0])
+                return render(request, 'ancient/teacher_course_hw.html', {'homeworkrender': homeworkrender, 'user': request.user, 'classrender': classrender[0], 'content':homeworkcontent})  # the class the user has chosen
+            else:
+                return redirect('/login')
         else:
             return redirect('/admin')
     else:

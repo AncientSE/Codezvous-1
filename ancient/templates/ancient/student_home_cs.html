@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Codezvous		</title>
+           <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">
+</script>
+</head>
+<body>
+
+<div class="nav-side-menu">
+    <div class="brand"><a href="{%url 'homepage'%}" >Codezvous</a></div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+
+
+            <li data-toggle="collapse" data-target="#service" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Your Classes <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="service">
+                {% for class in classchoose %}
+
+                <li><a href="{% url 'student_home_cs' classnumber=class.class_number.class_number %}">
+                           {{class.class_number.class_name}}
+                    </a>
+
+                </li>
+
+
+                {% endfor %}
+            </ul>
+
+            <li data-toggle="collapse" data-target="#" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> New Classes <span class="arrow"></span></a>
+            </li>
+
+            <li>
+                <a href="{% url 'logout'%}">
+					<span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+				</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container" id="main">
+{% for class in classrender %}
+    <div>
+        <h1>ClassName:<a href=" {% url 'student_course_main' classnumber=class.class_number %}">{{ class.class_name}}</a></h1>
+        <p>Teacher:<br>{{ class.teacher }}</p>
+        <p>ClassContent:<br> {{ class.class_content }}</p>
+    </div>
+{% endfor %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

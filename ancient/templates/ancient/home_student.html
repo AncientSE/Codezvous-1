@@ -20,34 +20,29 @@
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
 
-            <li data-toggle="collapse" data-target="#products" class="collapsed active">
-                <a href="#"><i class="fa fa-gift fa-lg"></i> Course Information <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="products">
-                <li class="active"><a href="#">To be filled in</a></li>
 
-            </ul>
 
             <li data-toggle="collapse" data-target="#service" class="collapsed">
-                <a href="#"><i class="fa fa-globe fa-lg"></i> Homework <span class="arrow"></span></a>
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Your Classes <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="service">
-                <li>Homework 1</li>
-                <li>Homework 2</li>
-                <li>Homework 3</li>
-            </ul>
-              
+                {% for class in classchoose %}
 
-            <li data-toggle="collapse" data-target="#new" class="collapsed">
-                <a href="#"><i class="fa fa-car fa-lg"></i> Submit Homework <span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="new">
-                <li><a href="{% url 'submit_1' %}">Submission 1</a></li>
-                <li>Submission 2</li>
-                <li>Submission 3</li>
+                <li><a href="{% url 'student_home_cs' classnumber=class.class_number.class_number %}">
+                           {{class.class_number.class_name}}
+                    </a>
+
+                </li>
+
+
+                {% endfor %}
             </ul>
+            <li data-toggle="collapse" data-target="#" class="collapsed">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> New Classes <span class="arrow"></span></a>
+            </li>
+
             <li>
-                             <a href="{%url 'logout'%}">
+                <a href="{% url 'logout'%}">
 					<span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
 				</a>
             </li>
@@ -58,20 +53,8 @@
     <div class="row">
         <div class="col-md-12">
             <h1>
-                {{ user }}, Welcome to your <span class="codezvous">Codezvous</span>
-	</h1>
-<h2>Your Course Submissions</h2>
-        <div>This is a test version.<br> You can go to "Submit Homework" -> "Submission 1".
-            Type something into the box, press the save button and the content you insert will be displayed below:<br>
-            press the logout button(left hand side) to logout
-        </div>
-{% for submit in submits %}
-    <div>
-        <h1>Homework Number:<br>{{ submit.homework_number}}</h1>
-        <p>Content:<br>{{ submit.submit_content }}</p>
-        <p>Submit time:<br> {{ submit.submit_time }}</p>
-    </div>
-{% endfor %}
+                {{ user }}, Welcome to your <span class="codezvous">Codezvous</span>, you have {{ numofchoose }} classes
+
         </div>
     </div>
 </div>
