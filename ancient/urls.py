@@ -17,8 +17,11 @@ urlpatterns = [
 
     #student
     url(r'^student/home/cs/(?P<classnumber>\d+)/$', views.student_home_cs, name='student_home_cs'), # student homepage for class content
+    url(r'^student/home/cc/$', views.student_home_cc, name='student_home_cc'),  # choosing class
+    url(r'^student/home/cc/(?P<classnumber>\d+)/$', views.student_home_cc_confirm, name='student_home_cc_confirm'),  # insert class into the ClassTable
     url(r'^student/course/main/(?P<classnumber>\d+)/$', views.student_course_main, name='student_course_main'),
     url(r'^student/course/(?P<classnumber>\d+)/(?P<homeworknumber>\d+)/$', views.student_course_hw, name='student_course_hw'),
+
 
     #teacher
     url(r'^teacher/home/ct/(?P<classnumber>\d+)/$', views.teacher_home_ct, name='teacher_home_ct'),

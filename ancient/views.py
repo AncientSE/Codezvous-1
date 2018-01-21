@@ -5,7 +5,8 @@ from django.utils import timezone
 from .models import Submit, Identity, ClassChoose, ClassTable, Homework
 from .forms import UserForm, SubmitForm, IdentityForm
 from django.contrib.auth.views import logout
-
+from django.http import HttpResponse
+from django.contrib import messages
 
 # Create your views here.
 
@@ -39,6 +40,39 @@ def student_home_cs(request, classnumber):  #render the class number
             return redirect('/admin')
     else:
         return redirect('/login')
+
+
+def student_home_cc(request):
+    if request.user.is_authenticated():
+        identity = Identity.objects.filter(name=request.user)
+        if(len(identity) is not 0):
+            if identity[0].identity == identity[0].STUDENT: #
+                classchoose = ClassChoose.objects.filter(student=request.user)
+                classchooseid = classchoose.values_list('class_number', flat=True)
+                classnotchoose = ClassTable.objects.exclude(pk__in=set(classchooseid))
+                return render(request, 'ancient/student_home_cc.html',{'classchoose': classchoose, 'user':request.user, 'classnotchoose':classnotchoose})
+            else:
+                return redirect('/login')
+        else:
+            return redirect('/login')
+    else:
+        return redirect('/login')
+
+
+def student_home_cc_confirm(request, classnumber):
+    if request.user.is_authenticated():
+        identity = Identity.objects.filter(name=request.user)
+        if(len(identity) is not 0):
+            if identity[0].identity == identity[0].STUDENT: #
+                classchoose = ClassChoose.objects.filter(student=request.user).values_list('class_number', flat=True)
+                classtbchoose = ClassTable.objects.filter(class_number=classnumber)
+                if len(classtbchoose) > 0 and not (classtbchoose[0] in classchoose):
+                    ClassChoose.objects.create(student=request.user, class_number=classtbchoose[0])
+                    messages.info(request, "选课成功！")
+                    return redirect('student_home_cc')
+                else:
+                    messages.info(request, "选课失败！")
+    return redirect('student_home_cc')
 
 
 def student_course_main(request, classnumber):  #class page

@@ -6,8 +6,8 @@
            <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">
 </script>
@@ -52,12 +52,26 @@
 <div class="container" id="main">
     <div class="row">
         <div class="col-md-12">
-            <h1>
-                {{ user }}, Welcome to your <span class="codezvous">Codezvous</span>, you have {{ numofchoose }} classes
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}"> {{ message }}</div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+{% for class in classnotchoose %}
+    <div>
+        <h1>ClassName:{{ class.class_name}}</h1>
+        <p>Teacher:<br>{{ class.teacher }}</p>
+        <p>ClassContent:<br> {{ class.class_content }}</p>
+        <a href="{% url 'student_home_cc_confirm' classnumber=class.class_number %}" onclick="return confirm('一旦选课无法退课，你确定吗？')">选择该课程</a>
+    </div>
+{% endfor %}
+
 
         </div>
     </div>
 </div>
-	
+
 </body>
 </html>
