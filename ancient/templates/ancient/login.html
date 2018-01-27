@@ -9,6 +9,10 @@
 <body>
 <h1> Welcome to <span class = "codezvous">Codezvous</span>, the World's leading course management platform</h1>
 <h2>Login</h2>
+<p>
+    {% csrf_token %}
+    {{msg}}
+</p>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
