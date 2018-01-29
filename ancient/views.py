@@ -8,6 +8,7 @@ from django.contrib.auth.views import logout
 from django.http import HttpResponse
 from django.contrib import messages
 import os
+import sys, subprocess #for testing
 from ancient.utils.email_send import send_register_email
 from django.template import RequestContext
 # Create your views here.
@@ -99,22 +100,33 @@ def student_course_hw(request, classnumber, homeworknumber):  #
         if(len(identity) is not 0):
             if identity[0].identity == identity[0].STUDENT: #
 
-
+                #the class
                 classrender = ClassTable.objects.filter(class_number=classnumber)
+                #all the homework for this class
                 homeworkrender = Homework.objects.filter(class_number=classrender[0]).order_by('homework_number')
-                homeworkcontent = Homework.objects.filter(homework_number=homeworknumber, class_number=classnumber)
+                #this specific homework (i modified the last search value to 'class_number'
+                # because this class_number is actually a class, by Tiankuang18/01/29)
+                homeworkcontent = Homework.objects.filter(homework_number=homeworknumber, class_number=classrender[0])
 
                 # specify if the method is POST?
                 if (request.method == 'POST'):
                     file = request.FILES['file']
-                    fileName = 'code_'+ str(timezone.now())
+                    #modified by Tiankuang
+                    code_tz_now = str(timezone.now())
+                    t_ind=code_tz_now.find('.')
+                    code_tz_now=code_tz_now[0:t_ind]
+                    code_tz_now=code_tz_now.replace(':', '_')
+                    #modified done
 
                     # upload file dir
-                    path = os.path.join('./UserUpload/', str(request.user), str(classnumber), str(homeworknumber)) +'/'
-                    print('  '+path)
+                    fileName = 'code_' + code_tz_now
+                    # modified Tiankuang
+                    path = os.path.join('.','UserUpload', str(request.user), str(classnumber), str(homeworknumber))
+
                     if not os.path.exists(path):
                         os.makedirs(path)
-                    with open(path + fileName, 'wb+') as destination:
+                    # modified Tiankuang
+                    with open(os.path.join(path, fileName), 'wb+') as destination:
                         for chunk in file.chunks():
                             destination.write(chunk)
 
@@ -125,15 +137,19 @@ def student_course_hw(request, classnumber, homeworknumber):  #
                     submitInfo.class_number = classnumber
                     submitInfo.homework_number = homeworknumber
                     submitInfo.file_name = fileName
-                    submitInfo.file_dir = path + fileName
+                    submitInfo.file_dir = os.path.join(path, fileName) #modified Tiankuang
                     submitInfo.submit_time = timezone.now()
                     submitInfo.save()
+                    # added by Tiankuang 2018/01/29
+                    # run test immediately
+                    try:
+                        test_result= run_test(submitInfo, homeworkcontent[0])
+                        submitInfo.score = test_result
+                        submitInfo.save()
 
-
-
-
-
-                ##
+                    except Exception:
+                        pass
+                    # run done
 
 
                 # file submit area config
@@ -379,3 +395,28 @@ def submit_new(request):  # submit
         form = SubmitForm()
     return render(request, 'ancient/submit_1.html', {'form': form})
 '''
+
+def run_test(submitInfo, homeworkcontent):
+    testpath_input = homeworkcontent.test_input
+    print(testpath_input)
+    testpath_output = homeworkcontent.test_output
+    print(testpath_output)
+    homeworkpath = submitInfo.file_dir
+    print(homeworkpath)
+    try:
+        with open(testpath_input,'r') as f_input:
+            string_input=f_input.read()
+    except Exception:
+        return 'read input error'
+    try:
+        with open(testpath_output,'r') as f_output:
+            string_output=f_output.read()
+    except Exception:
+        return 'read output error'
+    try:
+        s_out = subprocess.check_output([sys.executable, homeworkpath, string_input], universal_newlines=True)
+        if s_out == string_output:
+            return 'well done'
+    except Exception:
+        return 'error'
+    return 'mysteriously this output'
