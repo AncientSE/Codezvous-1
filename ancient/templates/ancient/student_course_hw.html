@@ -59,9 +59,12 @@
 
     <div>
         {%for s_hwInfo in hwInfo%}
-            <h4>Submit_time:{{s_hwInfo.submit_time}}</h4>
-
+            <h4>提交时间:{{s_hwInfo.submit_time}}</h4>
+            <!--add by Tiankuang 2018/01/29---->
+            <h4>运行结果:{{s_hwInfo.score}}</h4>
+            <!--add end Tiankuang-->
             <p>{{s_hwInfo.content}}</p>
+
             <p>......</p>
         {%endfor%}
     </div>

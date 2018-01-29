@@ -38,6 +38,10 @@ class Submit(models.Model):  # Homework Submitted
     submit_time = models.DateTimeField(
         blank=True, null=True)
 
+    #  added 2018\01\29 by Tiankuang
+    score = models.CharField(max_length=10, default="Not Run yet")
+    #  add end Tiankuang
+
     def publish(self):
         self.submit_time = timezone.now()
         self.save()
@@ -88,6 +92,10 @@ class Homework(models.Model):  # teacher gave out
     class_number = models.ForeignKey('ClassTable', null=True, on_delete=models.CASCADE)   #reference to the class table
     homework_number = models.PositiveSmallIntegerField()  # try to bind with the teacher name
     homework_content = models.TextField()
+    #test_input = models.FilePathField(name=None, default='./NoAddress')
+    #test_output = models.FilePathField(name=None, default='./NoAddress')
+    test_input= models.TextField()
+    test_output=models.TextField()
     homework_deadline = models.DateTimeField(
             blank=True, null=True)
 
