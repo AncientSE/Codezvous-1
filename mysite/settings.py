@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ancient',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -105,9 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -120,4 +121,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
 STATIC_ROOT = os.path.join(BASE_DIR, "ancient/static/")
+=======
+#   email verification
+AUTH_USER_MODEL = "ancient.newuser"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = '1551003106@qq.com'
+EMAIL_HOST_PASSWORD = 'xrnifvjgclapfhbj'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_FROM = '1551003106@qq.com'
+>>>>>>> 59813debdcc9b0ffb14f08f1d5ec5a27338860bb

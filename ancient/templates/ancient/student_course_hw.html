@@ -47,12 +47,43 @@
     <div class="row">
         <div class="col-md-12">
 
-{% for content in content %}
+{% for content in contents %}
     <div>
-        <h1>Homework No.{{ content.homework_number}}</h1>
-        <p>Homework Content:<br>{{ content.homework_content }}</p>
+        <h1>Homework No.{{hwId}}</h1>
+        <h3>Homework Content:<br>{{ content.homework_content }}</h3>
     </div>
 {% endfor %}
+
+
+   <div>您提交的作业日志如下：（越下面越新）</div>
+
+    <div>
+        {%for s_hwInfo in hwInfo%}
+            <h4>提交时间:{{s_hwInfo.submit_time}}</h4>
+            <!--add by Tiankuang 2018/01/29---->
+            <h4>运行结果:{{s_hwInfo.score}}</h4>
+            <!--add end Tiankuang-->
+            <p>{{s_hwInfo.content}}</p>
+
+            <p>......</p>
+        {%endfor%}
+    </div>
+
+    <div>===============================================================</div>
+
+    <h3>或者您可以继续进行作业提交。注意：我们将以最后一次提交为准</h3>
+    <div>程序员注：这里有两个方案,一个是提交的作业直接更新，另一个是提交的作业会得到保留</div>
+    <p>
+       <form id="submitForm" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            <input name="file" type="file">
+            <input type="submit" name="submit" value="Submit">
+        </form>
+    </p>
+
+
+
+
         </div>
     </div>
 </div>

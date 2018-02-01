@@ -2,12 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.utils import timezone
-from .models import Submit, Identity, ClassChoose, ClassTable, Homework
-from .forms import UserForm, SubmitForm, IdentityForm
+from .models import Submit, Identity, ClassChoose, ClassTable, Homework,newuser, EmailVerifyRecord
+from .forms import UserForm, SubmitForm, IdentityForm, loginForm
 from django.contrib.auth.views import logout
 from django.http import HttpResponse
 from django.contrib import messages
-
+import os
+import sys, subprocess #for testing
+from ancient.utils.email_send import send_register_email
+from django.template import RequestContext
 # Create your views here.
 
 def homepage(request):  # homepage
@@ -96,16 +99,92 @@ def student_course_hw(request, classnumber, homeworknumber):  #
         identity = Identity.objects.filter(name=request.user)
         if(len(identity) is not 0):
             if identity[0].identity == identity[0].STUDENT: #
+
+                #the class
                 classrender = ClassTable.objects.filter(class_number=classnumber)
+                #all the homework for this class
                 homeworkrender = Homework.objects.filter(class_number=classrender[0]).order_by('homework_number')
+                #this specific homework (i modified the last search value to 'class_number'
+                # because this class_number is actually a class, by Tiankuang18/01/29)
                 homeworkcontent = Homework.objects.filter(homework_number=homeworknumber, class_number=classrender[0])
-                return render(request, 'ancient/student_course_hw.html', {'homeworkrender': homeworkrender, 'user': request.user, 'classrender': classrender[0], 'content':homeworkcontent})  # the class the user has chosen
+
+                # specify if the method is POST?
+                if (request.method == 'POST'):
+                    file = request.FILES['file']
+                    #modified by Tiankuang
+                    code_tz_now = str(timezone.now())
+                    t_ind=code_tz_now.find('.')
+                    code_tz_now=code_tz_now[0:t_ind]
+                    code_tz_now=code_tz_now.replace(':', '_')
+                    #modified done
+
+                    # upload file dir
+                    fileName = 'code_' + code_tz_now
+                    # modified Tiankuang
+                    path = os.path.join('.','UserUpload', str(request.user), str(classnumber), str(homeworknumber))
+
+                    if not os.path.exists(path):
+                        os.makedirs(path)
+                    # modified Tiankuang
+                    with open(os.path.join(path, fileName), 'wb+') as destination:
+                        for chunk in file.chunks():
+                            destination.write(chunk)
+
+                    # operating model: Submit
+
+                    submitInfo = Submit()
+                    submitInfo.student_id = request.user.id
+                    submitInfo.class_number = classnumber
+                    submitInfo.homework_number = homeworknumber
+                    submitInfo.file_name = fileName
+                    submitInfo.file_dir = os.path.join(path, fileName) #modified Tiankuang
+                    submitInfo.submit_time = timezone.now()
+                    submitInfo.save()
+                    # added by Tiankuang 2018/01/29
+                    # run test immediately
+                    try:
+                        test_result= run_test(submitInfo, homeworkcontent[0])
+                        submitInfo.score = test_result
+                        submitInfo.save()
+
+                    except Exception:
+                        pass
+                    # run done
+
+
+                # file submit area config
+
+                print("    SubmitUserName: "+str(request.user))
+
+
+
+                ##
+
+
+                homeworkInfo = Submit.objects.filter(class_number=classnumber, homework_number = homeworknumber)
+
+                for s_homeworkInfo in homeworkInfo:
+                    hwContent = open(s_homeworkInfo.file_dir)
+                    s_homeworkInfo.content = hwContent.read(120)
+
+                data = {
+                    'homeworkrender': homeworkrender,
+                    'user': request.user,
+                    'classrender': classrender[0],
+                    'contents':homeworkcontent,
+                    'hwInfo':homeworkInfo,
+                    'hwId':str(homeworknumber),
+                }
+
+
+                return render(request, 'ancient/student_course_hw.html', data)  # the class the user has chosen
             else:
                 return redirect('/login')
         else:
             return redirect('/admin')
     else:
         return redirect('/login')
+
 
 
 def teacher_home_ct(request, classnumber):  #
@@ -157,6 +236,7 @@ def teacher_course_hw(request, classnumber, homeworknumber):  #
         return redirect('/login')
 
 
+'''
 class UserFormView(View):  # register
     form_class_user = UserForm
     form_class_identity = IdentityForm
@@ -177,9 +257,27 @@ class UserFormView(View):  # register
             user = form_user.save(commit=False)
             username = form_user.cleaned_data['username']
             password = form_user.cleaned_data['password']
+            password_test=form_user.cleaned_data['password_test']
+            email = form_user.cleaned_data['email']
+            context={
+                'form_user': 'form_user',
+                'form_identity': 'form_identity'
+            }
+            error_password = "two password is not equal!"
+            error_username = "this name has been registered!"
+            error_email = "this email has been registered!"
+            if password != password_test:
+                context['msg']=error_password
+                return render(request, self.template_name, context)
+            if len(newuser.objects.filter(username=username))>0:
+                context['msg']=error_username
+                return render(request, self.template_name, context)
+            if len(newuser.objects.filter(email=email))>0:
+                context['msg'] = error_email
+                return render(request, self.template_name, context)
             user.set_password(password)
             user.save()
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=username, password=password,)
             identity = form_identity.save(commit=False)  # save identity
             identity.set_name(user)
             print(identity.identity)
@@ -190,8 +288,98 @@ class UserFormView(View):  # register
                 if user.is_active:
                     login(request, user)
                     return redirect('/')
-
         return render(request, self.template_name, {'form_user': form_user, 'form_identity': form_identity})
+'''
+def register(request):
+    error_password = "two password is not equal!"
+    error_username = "this name has been registered!"
+    error_email = "this email has been registered!"
+    template_name = 'ancient/register.html'
+    context = {
+        'form_user': UserForm,
+        'form_identity': IdentityForm
+    }
+
+    if request.method == 'GET':
+        form_user = UserForm
+        form_identity = IdentityForm
+        return render(request, template_name,{'form_user': form_user, 'form_identity': form_identity})
+    if request.method == 'POST':
+        form_user = UserForm(request.POST)
+        form_identity = IdentityForm(request.POST)
+        context = {
+            'form_user': form_user,
+            'form_identity': form_identity
+        }
+        if form_user.is_valid() and form_identity.is_valid():
+            username=form_user.cleaned_data['username']
+            email = form_user.cleaned_data['email']
+            password = form_user.cleaned_data['password']
+            password_test = form_user.cleaned_data['password_test']
+            identity=form_identity.cleaned_data['identity']
+            User_filter_result = newuser.objects.filter(username=username)
+            Email_filter_result = newuser.objects.filter(email=email)
+            if len(User_filter_result) > 0:
+                context['msg'] = error_username
+                return render(request,template_name,context)
+            elif len(Email_filter_result) > 0:
+                context['msg'] = error_email
+                return render(request,template_name,context)
+            elif password != password_test:
+                context['msg'] = error_password
+                return render(request,template_name,context)
+            else:
+                send_register_email(email, "register")
+                newuser.objects.create_user(username=username,email=email,password=password,is_active=False)
+                user=newuser.objects.get(username=username)
+                user.save()
+                Identity.objects.create(name=user,identity=identity)
+                return redirect('homepage')
+        else:
+            return render(request,template_name,context)
+
+
+def log_in(request):
+    template_name='ancient/login.html'
+    context = {
+        'form': loginForm,
+    }
+    if request.method == 'GET':
+        return render(request,template_name, context)
+    if request.method == 'POST':
+        form=loginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username,password=password)
+            if user is not None:
+                if user.is_active == False:
+                    context['msg']=u"用户还未激活，请到邮箱中进行验证！"
+                    return render(request, template_name, context)
+                login(request, user)
+                return redirect('homepage')
+            else:
+                context['msg']="password or username is not correct!"
+                return render(request,template_name,context)
+        else:
+            return render(request,template_name,context)
+
+class ActiveUserView(View):
+    """账户激活的View"""
+    def get(self, request, active_code):
+        all_records = EmailVerifyRecord.objects.filter(code=active_code)
+        if all_records:
+            for record in all_records:
+                email = record.email
+                user = newuser.objects.get(email=email)
+                user.is_active = True
+                user.save()
+        else:
+            # active_fail.html在templates中新建的一个文件body中就一个<p>链接失效!</p>
+            return render(request, "ancient/active_fail.html", {})
+        return render(request,"ancient/active_success.html",{})
+
+
 
 '''
 def submit_new(request):  # submit
@@ -207,3 +395,28 @@ def submit_new(request):  # submit
         form = SubmitForm()
     return render(request, 'ancient/submit_1.html', {'form': form})
 '''
+
+def run_test(submitInfo, homeworkcontent):
+    testpath_input = homeworkcontent.test_input
+    print(testpath_input)
+    testpath_output = homeworkcontent.test_output
+    print(testpath_output)
+    homeworkpath = submitInfo.file_dir
+    print(homeworkpath)
+    try:
+        with open(testpath_input,'r') as f_input:
+            string_input=f_input.read()
+    except Exception:
+        return 'read input error'
+    try:
+        with open(testpath_output,'r') as f_output:
+            string_output=f_output.read()
+    except Exception:
+        return 'read output error'
+    try:
+        s_out = subprocess.check_output([sys.executable, homeworkpath, string_input], universal_newlines=True)
+        if s_out == string_output:
+            return 'well done'
+    except Exception:
+        return 'error'
+    return 'mysteriously this output'
