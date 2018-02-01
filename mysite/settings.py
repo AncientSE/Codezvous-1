@@ -121,9 +121,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
+
 STATIC_ROOT = os.path.join(BASE_DIR, "ancient/static/")
-=======
+
 #   email verification
 AUTH_USER_MODEL = "ancient.newuser"
 
@@ -136,4 +136,4 @@ EMAIL_HOST_PASSWORD = 'xrnifvjgclapfhbj'
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 EMAIL_FROM = '1551003106@qq.com'
->>>>>>> 59813debdcc9b0ffb14f08f1d5ec5a27338860bb
+
