@@ -116,6 +116,7 @@ def student_course_hw(request, classnumber, homeworknumber):  #
                     t_ind=code_tz_now.find('.')
                     code_tz_now=code_tz_now[0:t_ind]
                     code_tz_now=code_tz_now.replace(':', '_')
+                    code_tz_now=code_tz_now.replace(' ', '_')
                     #modified done
 
                     # upload file dir
@@ -144,6 +145,8 @@ def student_course_hw(request, classnumber, homeworknumber):  #
                     # run test immediately
                     try:
                         test_result= run_test(submitInfo, homeworkcontent[0])
+                        #test_result = subprocess.check_output([sys.executable, './UserUpload/student/1/1/code_2018-02-01_14_57_27', ''], universal_newlines=True)
+                        #test_result = subprocess.check_output(['python3', './UserUpload/student/1/1/code_2018-02-01_14_57_27'], universal_newlines=True)
                         submitInfo.score = test_result
                         submitInfo.save()
 
@@ -291,6 +294,7 @@ class UserFormView(View):  # register
         return render(request, self.template_name, {'form_user': form_user, 'form_identity': form_identity})
 '''
 def register(request):
+    success_register ="1"
     error_password = "two password is not equal!"
     error_username = "this name has been registered!"
     error_email = "this email has been registered!"
@@ -334,7 +338,8 @@ def register(request):
                 user=newuser.objects.get(username=username)
                 user.save()
                 Identity.objects.create(name=user,identity=identity)
-                return redirect('homepage')
+                context['msg'] = success_register
+                return render(request,template_name,context)
         else:
             return render(request,template_name,context)
 
@@ -413,10 +418,14 @@ def run_test(submitInfo, homeworkcontent):
             string_output=f_output.read()
     except Exception:
         return 'read output error'
+    
+    
     try:
-        s_out = subprocess.check_output([sys.executable, homeworkpath, string_input], universal_newlines=True)
+        s_out = subprocess.check_output(['python3', homeworkpath, string_input], universal_newlines=True)
         if s_out == string_output:
             return 'well done'
+        else:
+            return 'wrong result'
     except Exception:
-        return 'error'
+        return 'run time error'
     return 'mysteriously this output'

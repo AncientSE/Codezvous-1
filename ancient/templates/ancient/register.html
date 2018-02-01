@@ -2,18 +2,24 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>  Login       </title>
+<title>  Register       </title>
     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 <h1> Welcome to <span class = "codezvous">Codezvous</span>, the World's leading course management platform</h1>
 <h2>Register</h2>
-    <p>
-        {% csrf_token %}
-        {{msg}}
+    {% if msg != "1" %}
+        <p>
+           {% csrf_token %}
+           {{msg}}
+        </p>
+    {% else %}
+        <script type="text/javascript">
+                    alert("注册成功！快去邮箱激活你的账号!");
+        </script>
+    {% endif %}
 
-    </p>
     <form method="POST" class="post-form">
         {% csrf_token %}
         {{ form_user.as_p }}
