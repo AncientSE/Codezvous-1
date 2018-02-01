@@ -5,3 +5,9 @@ myvenv
 db.sqlite3
 /static
 .DS_Store
+/ancient/media/
+/ancient/static/admin/
+/mysite_nginx.conf
+/mysite_uwsgi.ini
+test.py
+uwsgi_params
